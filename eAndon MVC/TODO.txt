@@ -1,0 +1,3 @@
+﻿       - Make WorkcenterRow in dbo.WorkcenterList unique
+              - Add a View to add, remove and edit workcenters in dbo.WorkcenterList
+                          var _eAndonDB = new eAndonDB_Entities(); nahoru do Home Controller

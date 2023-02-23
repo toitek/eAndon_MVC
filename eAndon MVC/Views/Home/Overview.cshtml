@@ -1,0 +1,36 @@
+﻿@model List<AndonTerminalModel>
+
+@{
+    ViewBag.Title = "Overview";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+
+<div class="text-center">
+
+    <table>
+        <thead>
+        <tr>
+            <th>Workcenter</th>
+            @for (var statusIndex = 0; statusIndex < Model[0].StatusValues.Count(); statusIndex++)
+            {
+                <th>@Model[0].StatusDefinitions[statusIndex].StatusName</th>
+            }
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var workcenter in Model)
+        {
+            <tr>
+                <td>@workcenter.WorkcenterID</td>
+                @for (var statusIndex = 0; statusIndex < workcenter.StatusValues.Count(); statusIndex++)
+                {
+                    var statusValue = workcenter.StatusValues[statusIndex];
+                    <td id="status_@statusIndex" onclick="updateStatus('@workcenter.WorkcenterID', @statusIndex)" style="background-color: @(statusValue == "green" ? "green" : "red"); cursor: pointer;">@statusValue</td>
+                }
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
